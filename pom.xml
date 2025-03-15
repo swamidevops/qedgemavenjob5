@@ -5,6 +5,15 @@
   <artifactId>edutechApp</artifactId>
   <packaging>war</packaging>
   <version>1.5</version>
+  ...
+    <plugin>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>2.5</version>
+      <configuration>
+        <useFile>false</useFile>
+      </configuration>
+    </plugin>
+    ...
   <name>edutechApp Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
