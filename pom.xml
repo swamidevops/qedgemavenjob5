@@ -12,15 +12,21 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <cucumber.version>6.10.2</cucumber.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <java.version>11</java.version>
+        <cucumber.version>6.10.2</cucumber.version>
         <lombok.version>1.18.18</lombok.version>
     </properties>    
 
     <dependencies>
-        <!-- All your dependencies go here as provided in your original file -->
+        <!-- TestNG Dependency (Moved to correct section) -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.8.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -32,7 +38,7 @@
                 <version>2.22.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <file>testng.xml</file>  <!-- ✅ Corrected format -->
                     </suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
@@ -110,16 +116,6 @@
                         </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-    <!-- Add this TestNG dependency -->
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>7.8.0</version>  <!-- Use the latest stable version -->
-        <scope>test</scope>
-    </dependency>
-</dependencies>
-
             </plugin>
         </plugins>
     </build>
