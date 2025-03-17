@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,14 +17,35 @@
         <java.version>11</java.version>
         <cucumber.version>6.10.2</cucumber.version>
         <lombok.version>1.18.18</lombok.version>
-    </properties>    
+    </properties>
 
     <dependencies>
+        <!-- TestNG Dependency -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.8.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Cucumber Dependencies -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -37,9 +58,15 @@
                 <version>2.22.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <file>testng.xml</file>
                     </suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <systemPropertyVariables>
+                        <property>
+                            <name>cucumber.plugin</name>
+                            <value>json:target/cucumber-reports/CucumberReport.json</value>
+                        </property>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 
@@ -52,16 +79,6 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <fork>true</fork>
-                    <compilerArgs>
-                        <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.*=ALL-UNNAMED</arg>
-                    </compilerArgs>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 
@@ -80,9 +97,9 @@
                         <configuration>
                             <projectName>ExecutionResult</projectName>
                             <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
-                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
                             <jsonFiles>
-                                <file>**/*.json</file>
+                                <file>CucumberReport.json</file>
                             </jsonFiles>
                         </configuration>
                     </execution>
@@ -107,9 +124,6 @@
                                     <classpathPrefix>.</classpathPrefix>
                                     <mainClass>test.TestRunner</mainClass>
                                 </manifest>
-                                <manifestEntries>
-                                    <Class-Path>.</Class-Path>
-                                </manifestEntries>
                             </archive>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
