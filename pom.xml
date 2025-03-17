@@ -24,14 +24,14 @@
     <finalName>edutechApp</finalName>
     <plugins>
 
-      <!-- ✅ Fix: Updated to the latest Maven WAR plugin -->
+      <!-- ✅ Temporary Fix: Downgraded Maven WAR Plugin to 3.2.3 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.4.0</version>
+        <version>3.2.3</version>  <!-- Compatible with older Maven versions -->
       </plugin>
 
-      <!-- ✅ Fix: Added Maven Compiler Plugin -->
+      <!-- Ensure Java compiler plugin is included -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -42,7 +42,7 @@
         </configuration>
       </plugin>
 
-      <!-- ✅ Fix: Ensure Surefire Plugin is configured properly -->
+      <!-- Ensure Surefire Plugin is configured properly -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
