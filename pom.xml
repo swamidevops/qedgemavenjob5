@@ -127,4 +127,6 @@
           <param>**/*.json</param>
      </jsonFiles>
 </configuration>
+</build>
+</project>
 
