@@ -20,7 +20,6 @@
     </properties>    
 
     <dependencies>
-        <!-- TestNG Dependency (Moved to correct section) -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -38,7 +37,7 @@
                 <version>2.22.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <file>testng.xml</file>  <!-- ✅ Corrected format -->
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
@@ -79,10 +78,12 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>Salesforce</projectName>
-                            <cucumberOutput>target/cucumber-reports/CucumberReport.json</cucumberOutput>
-                            <buildNumber>1</buildNumber>
-                            <parallelTesting>false</parallelTesting>
+                            <projectName>ExecutionResult</projectName>
+                            <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <jsonFiles>
+                                <file>**/*.json</file>
+                            </jsonFiles>
                         </configuration>
                     </execution>
                 </executions>
@@ -119,14 +120,4 @@
             </plugin>
         </plugins>
     </build>
-</project><configuration>
-     <projectName>ExecutionResult</projectName>
-     <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
-     <inputDirectory>${project.build.directory}</inputDirectory>
-     <jsonFiles>
-          <param>**/*.json</param>
-     </jsonFiles>
-</configuration>
-</build>
 </project>
-
