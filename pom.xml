@@ -110,6 +110,16 @@
                         </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+    <!-- Add this TestNG dependency -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.8.0</version>  <!-- Use the latest stable version -->
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
             </plugin>
         </plugins>
     </build>
